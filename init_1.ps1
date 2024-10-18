@@ -31,10 +31,28 @@ Write-Host "Directory structure created."
 Write-Host "Setting up Go project..."
 Set-Location api-go
 
-# Go 1.23のインストール（MacやLinuxはそれぞれのパッケージ管理システムでインストール）
 Write-Host "Installing Go 1.23..."
-# Windows用のGoのインストールはPowerShellでは難しいので、手動でダウンロードを促す。
-Write-Host "Please download and install Go 1.23 from https://golang.org/dl/"
+# Windows用のGoのインストールはPowerShellで行う
+$goVersion = "1.23.0"
+$goInstallerUrl = "https://go.dev/dl/go$goVersion.windows-amd64.msi"
+$installerPath = "$env:TEMP\go$goVersion.windows-amd64.msi"
+
+# Goのインストーラーをダウンロード
+Write-Host "Downloading Go $goVersion..."
+Invoke-WebRequest -Uri $goInstallerUrl -OutFile $installerPath
+
+# Goのインストールを実行
+Write-Host "Installing Go $goVersion..."
+Start-Process msiexec.exe -ArgumentList "/i `"$installerPath`" /quiet /norestart" -NoNewWindow -Wait
+
+# 環境変数にGoのパスを追加
+$goPath = "C:\Program Files\Go\bin"
+if (-not ($env:Path -contains $goPath)) {
+    [Environment]::SetEnvironmentVariable("Path", $env:Path + ";" + $goPath, [EnvironmentVariableTarget]::Machine)
+    Write-Host "Added Go to system PATH."
+}
+
+Write-Host "Please restart PowerShell to apply the new environment variable."
 
 # Ginフレームワークをインストール
 Write-Host "Installing Gin framework..."
