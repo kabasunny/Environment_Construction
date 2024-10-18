@@ -1,15 +1,20 @@
-# Node modules
+# Node.js
 node_modules/
+npm-debug.log
+yarn-error.log
 
-# Logs
-logs/
-*.log
-
-# Environment files
-.env
-
-# Python virtual environments
+# Python
+__pycache__/
+*.py[cod]
 venv/
 
-# MySQL data
-db-data/
+# Go
+go.mod
+go.sum
+tmp/
+
+# Docker
+docker/
+
+# .env
+.env

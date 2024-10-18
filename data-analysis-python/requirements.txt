@@ -1,0 +1,8 @@
+Flask
+pandas
+matplotlib
+seaborn
+waitress
+numpy
+lightgbm
+yfinance
