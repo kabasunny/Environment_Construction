@@ -23,8 +23,20 @@ Function SetupDataAnalysisPython {
 
     Write-Host "Checking if Python is installed..."
     if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
-        Write-Host "Python is not installed. Please install Python 3.11 from https://www.python.org/downloads/ and rerun the script."
-        exit
+        Write-Host "Python is not installed. Installing Python 3.11..."
+        $pythonInstaller = "python-3.11.0-amd64.exe"
+        Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.11.0/$pythonInstaller" -OutFile $pythonInstaller
+
+        Start-Process -FilePath $pythonInstaller -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
+
+        # Clean up the installer
+        Remove-Item $pythonInstaller
+
+        # Check if Python was successfully installed
+        if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
+            Write-Host "Failed to install Python. Please install Python 3.11 manually from https://www.python.org/downloads/ and rerun the script." -ForegroundColor Red
+            exit
+        }
     } else {
         Write-Host "Python is already installed."
     }
@@ -102,7 +114,6 @@ if __name__ == "__main__":
     Write-Host "data-analysis-python project setup complete."
     Set-Location $projectDir
     Set-Location ..
-
 }
 
 SetupDataAnalysisPython
