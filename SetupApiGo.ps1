@@ -1,7 +1,7 @@
 # SetupApiGo.ps1
 Function SetupApiGo {
     Write-Host "Setting up api-go project..."
-    Set-Location api-go
+    Set-Location ../api-go
     
     Write-Host "Initializing Go module..."
     go mod init zeninvestor
@@ -74,7 +74,7 @@ func main() {
     
     Set-Content main.go $mainGoContent
     Write-Host "api-go project setup complete."
-    Set-Location ..
+    Set-Location ../Environment_Construction
 }
 
 SetupApiGo

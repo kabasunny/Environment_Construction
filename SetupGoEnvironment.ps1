@@ -13,7 +13,7 @@ Function SetupGoEnvironment {
     Write-Host "Installing Go $goVersion..."
     Start-Process msiexec.exe -ArgumentList "/i `"$installerPath`" /quiet /norestart" -NoNewWindow -Wait
     
-    $goPath = "C:\Program Files\Go\bin"
+    $goPath = "C:/Program Files/Go/bin"
     if (-not ($env:Path -contains $goPath)) {
         [Environment]::SetEnvironmentVariable("Path", $env:Path + ";" + $goPath, [EnvironmentVariableTarget]::User)
         Write-Host "Added Go to user PATH."

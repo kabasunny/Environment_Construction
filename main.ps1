@@ -7,9 +7,11 @@
 . .\CreateDirectoryStructure.ps1
 . .\SetupGoEnvironment.ps1
 . .\SetupApiGo.ps1
+. .\CreateApiDirectories.ps1
 . .\SetupDataAnalysisPython.ps1
 . .\SetupFrontendReact.ps1
+. .\CreateFrontendDirectories.ps1
 . .\CreateCommonFiles.ps1
 . .\RunDockerCompose.ps1
 
-Write-Host "fin"
+Write-Host "finish"

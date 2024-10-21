@@ -9,7 +9,7 @@ Function SetupDataAnalysisPython {
     }
 
     # Create data-analysis-python directory if it doesn't exist
-    $projectDir = Join-Path (Get-Location) "data-analysis-python"
+    $projectDir = Join-Path (Get-Location) "../data-analysis-python"
     if (-not (Test-Path $projectDir)) {
         New-Item -Path $projectDir -ItemType Directory
     }
@@ -113,7 +113,7 @@ if __name__ == "__main__":
 
     Write-Host "data-analysis-python project setup complete."
     Set-Location $projectDir
-    Set-Location ..
+    Set-Location ../Environment_Construction
 }
 
 SetupDataAnalysisPython
