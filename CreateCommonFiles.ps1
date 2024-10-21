@@ -16,7 +16,7 @@ API_GO_ENV=development
 
 # frontend-react environment variables are in frontend-react/
 '@
-    Set-Content .env $envContent
+    Set-Content ../.env $envContent
 
     Write-Host "Creating .gitignore file..."
     $gitignoreContent = @'
@@ -31,8 +31,6 @@ __pycache__/
 venv/
 
 # Go
-go.mod
-go.sum
 tmp/
 
 # Docker
@@ -41,7 +39,7 @@ docker/
 # .env
 .env
 '@
-    Set-Content .gitignore $gitignoreContent
+    Set-Content ../.gitignore $gitignoreContent
 
     Write-Host "Creating docker-compose.yml file..."
     $dockerComposeContent = @'
@@ -77,7 +75,7 @@ services:
     depends_on:
       - mysql
 '@
-    Set-Content docker-compose.yml $dockerComposeContent
+    Set-Content ../docker-compose.yml $dockerComposeContent
 
     Write-Host "Common files creation complete."
 }

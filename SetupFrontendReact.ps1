@@ -23,7 +23,7 @@ Function SetupFrontendReact {
     npm install -g npm
 
     # frontend-react ディレクトリに移動して Vite プロジェクトを作成
-    Set-Location frontend-react
+    Set-Location ../frontend-react
 
     Write-Host "Creating Vite + React + TypeScript project..."
     npx create-vite@latest . --template react-ts
@@ -46,7 +46,7 @@ VITE_APP_API_URL=http://localhost:8086
     Set-Content -Path ".env" -Value $frontendEnvContent -Encoding utf8
 
     Write-Host "frontend-react setup complete."
-    Set-Location ..
+    Set-Location ../Environment_Construction
 }
 
 # 関数を呼び出す
